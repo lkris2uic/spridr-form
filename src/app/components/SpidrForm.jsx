@@ -135,8 +135,10 @@ export default function SpidrForm() {
     setFormData((prev) => ({ ...prev, [name]: formattedValue }));
   };
 
+  const [submitted, setSubmitted] = useState(false);
   const handleSubmit = (e) => {
     e.preventDefault();
+    setSubmitted(true);
     console.log("Form Submitted:", formData);
   };
 
@@ -149,82 +151,90 @@ export default function SpidrForm() {
       <div className="relative z-10">
         <Card className="w-[500px] bg-neutral-900 border border-neutral-800 text-white">
           <CardContent className="p-10">
-            <form onSubmit={handleSubmit} className="space-y-5">
-              <div>
-                <label className="text-sm text-neutral-400">First Name</label>
-                <Input
-                  name="firstName"
-                  value={formData.firstName}
-                  onChange={handleChange}
-                  className="bg-neutral-800 border border-neutral-700 text-white"
-                  required
-                />
+            {submitted ? (
+              <div className="flex flex-col items-center justify-center min-h-[300px]">
+                <h2 className="text-2xl font-bold mb-4 text-green-400 animate-pulse">🎉 Submission Received! 🎉</h2>
+                <p className="text-lg text-neutral-200 mb-2">Thank you for entering the Spidr Challenge.</p>
+                <p className="text-md text-neutral-400">Your secrets are safe in the web. 🕸️</p>
               </div>
+            ) : (
+              <form onSubmit={handleSubmit} className="space-y-5">
+                <div>
+                  <label className="text-sm text-neutral-400">First Name</label>
+                  <Input
+                    name="firstName"
+                    value={formData.firstName}
+                    onChange={handleChange}
+                    className="bg-neutral-800 border border-neutral-700 text-white"
+                    required
+                  />
+                </div>
 
-              <div>
-                <label className="text-sm text-neutral-400">Last Name</label>
-                <Input
-                  name="lastName"
-                  value={formData.lastName}
-                  onChange={handleChange}
-                  className="bg-neutral-800 border border-neutral-700 text-white"
-                  required
-                />
-              </div>
+                <div>
+                  <label className="text-sm text-neutral-400">Last Name</label>
+                  <Input
+                    name="lastName"
+                    value={formData.lastName}
+                    onChange={handleChange}
+                    className="bg-neutral-800 border border-neutral-700 text-white"
+                    required
+                  />
+                </div>
 
-              <div>
-                <label className="text-sm text-neutral-400">Phone Number</label>
-                <Input
-                  name="phone"
-                  value={formData.phone}
-                  onChange={handleChange}
-                  type="tel"
-                  className="bg-neutral-800 border border-neutral-700 text-white"
-                />
-              </div>
+                <div>
+                  <label className="text-sm text-neutral-400">Phone Number</label>
+                  <Input
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleChange}
+                    type="tel"
+                    className="bg-neutral-800 border border-neutral-700 text-white"
+                  />
+                </div>
 
-              <div>
-                <label className="text-sm text-neutral-400">Email Address</label>
-                <Input
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  type="email"
-                  className="bg-neutral-800 border border-neutral-700 text-white"
-                  required
-                />
-              </div>
+                <div>
+                  <label className="text-sm text-neutral-400">Email Address</label>
+                  <Input
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    type="email"
+                    className="bg-neutral-800 border border-neutral-700 text-white"
+                    required
+                  />
+                </div>
 
-              <div>
-                <label className="text-sm text-neutral-400">Guess the Air Fryer's Cost ($)</label>
-                <Input
-                  name="guess"
-                  value={formData.guess}
-                  onChange={handleChange}
-                  type="number"
-                  className="bg-neutral-800 border border-neutral-700 text-white"
-                />
-              </div>
+                <div>
+                  <label className="text-sm text-neutral-400">Guess the Air Fryer's Cost ($)</label>
+                  <Input
+                    name="guess"
+                    value={formData.guess}
+                    onChange={handleChange}
+                    type="number"
+                    className="bg-neutral-800 border border-neutral-700 text-white"
+                  />
+                </div>
 
-              <div>
-                <label className="text-sm text-neutral-400">Very, Very Secret 16-Digit Spidr PIN</label>
-                <Input
-                  name="spidrPin"
-                  value={formData.spidrPin}
-                  onChange={handleChange}
-                  placeholder="####-####-####-####"
-                  className="bg-neutral-800 border border-neutral-700 text-white tracking-widest"
-                  required
-                />
-              </div>
+                <div>
+                  <label className="text-sm text-neutral-400">Very, Very Secret 16-Digit Spidr PIN</label>
+                  <Input
+                    name="spidrPin"
+                    value={formData.spidrPin}
+                    onChange={handleChange}
+                    placeholder="####-####-####-####"
+                    className="bg-neutral-800 border border-neutral-700 text-white tracking-widest"
+                    required
+                  />
+                </div>
 
-              <Button
-                type="submit"
-                className="w-full bg-white text-black hover:bg-neutral-300 font-semibold"
-              >
-                Submit
-              </Button>
-            </form>
+                <Button
+                  type="submit"
+                  className="w-full bg-white text-black hover:bg-neutral-300 font-semibold"
+                >
+                  Submit
+                </Button>
+              </form>
+            )}
           </CardContent>
         </Card>
       </div>
