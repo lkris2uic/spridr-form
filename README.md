@@ -26,7 +26,7 @@ A visually engaging Next.js app featuring a particle background and a stylish fo
    yarn dev
    ```
 
-3. Open your browser:**
+3. Open your browser:
    Visit [http://localhost:3000](http://localhost:3000) to see the app in action.
 
 ## Project Structure
